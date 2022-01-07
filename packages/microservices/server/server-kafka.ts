@@ -194,7 +194,7 @@ export class ServerKafka extends Server implements CustomTransportStrategy {
     replyPartition: string,
     correlationId: string,
   ): Promise<RecordMetadata[]> {
-    const outgoingMessage = await this.serializer.serialize(message.response);
+    const outgoingMessage = await this.serializer.serialize(message);
     this.assignReplyPartition(replyPartition, outgoingMessage);
     this.assignCorrelationIdHeader(correlationId, outgoingMessage);
     this.assignErrorHeader(message, outgoingMessage);
