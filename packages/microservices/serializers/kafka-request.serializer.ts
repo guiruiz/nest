@@ -16,7 +16,9 @@ export interface KafkaRequest<T = any> {
 export class KafkaRequestSerializer
   implements Serializer<any, KafkaRequest | Promise<KafkaRequest>>
 {
-  serialize(value: any) {
+  serialize(packet: any) {
+    let value = packet.data || packet.response;
+
     const isNotKafkaMessage =
       isNil(value) ||
       !isObject(value) ||
